@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<input type="text" id="todo" value"">
+<button id="submit-button">Add</button>
+<h3>My Todo List</h3>
+<ul id="todo-list"></ul>
+
+
+<script>
+"use strict"
+
+let button = document.getElementById("submit-button");
+let todoList = document.getElementById("todo-list")
+let todo = document.getElementById("todo");
+
+// adding items
+button.onclick = function() {
+	let todo = document.getElementById("todo").value;
+	let item = document.createElement('li');
+	item.innerHTML = todo + "&nbsp;" + "&nbsp;" + "&#10007";
+	if(todo === "") {
+		alert("Add a todo first!")
+	} else {
+			todoList.prepend(item);
+	}
+	document.getElementById("todo").value = "";
+}
+
+// adding items by clicking enter
+todo.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        button.onclick();
+    }
+});
+
+// change color onmouseover
+todoList.onmouseover = function(event) {
+	let item = event.target;
+	item.style.color = "red";
+	item.style.cursor = "pointer"
+}
+
+// back to black color when mouse out
+todoList.onmouseout = function(event) {
+	let item = event.target;
+	item.style.color = "black";
+}
+
+// removing items
+todoList.onclick = function(event) {
+	let item = event.target;
+	let deleteConfirm = confirm("Are you sure you want to delete this item?");
+	if(deleteConfirm == true) {
+	todoList.removeChild(item);
+	}
+}
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+ 
